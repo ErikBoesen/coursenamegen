@@ -27,15 +27,20 @@ for (let word of words.slice(index)) {
     }
     index += 1;
 }
-console.log(chain);
 
-    /*
-    def response(self, query, message):
-        word = random.choice(list(self.chain.keys()))
-        message = word.capitalize()
-        for _ in range(random.randint(4, 10)):
-            word = random.choice(self.chain[word])
-            message += " " + word
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
-        return message
-*/
+function response() {
+    let keys = Object.keys(chain);
+    let word = keys[keys.length * Math.random() << 0];
+    let message = capitalize(word);
+    let wordCount = 4 + (6 * Math.random() << 0);
+    for (let i = 0; i < wordCount; i++) {
+        word = chain[word][chain[word].length * Math.random() << 0];
+        message += " " + word;
+    }
+    return message;
+}
+console.log(response());
