@@ -1,14 +1,20 @@
 function getTitles() {
     let req = new XMLHttpRequest();
-    req.open('GET', 'titles.json', false);
+    req.open('GET', 'titles.txt', false);
     req.send();
     let response = req.response;
-    return JSON.parse(response);
+    return response.split("\n");
 }
 
 let titles = getTitles();
-/*
-with open("resources/coursetitles.txt", "r") as f:
+console.log('Loaded ' + titles.length + ' titles.');
+
+let words = [];
+for (let title of titles) {
+    words += title.split(" ");
+}
+console.log('Found ' + words.length + ' words.');
+    /*
             words = f.read().replace("\"", "").split()
         index = 1
         self.chain = {}
