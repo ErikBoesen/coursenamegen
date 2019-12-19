@@ -9,9 +9,12 @@ function getTitles() {
 let titles = getTitles();
 console.log('Loaded ' + titles.length + ' titles.');
 
+const END = 0;
 let words = [];
 for (let title of titles) {
     words = words.concat(title.split(" "));
+    // Add separator
+    words.push(END);
 }
 console.log('Found ' + words.length + ' words.');
 
@@ -36,9 +39,12 @@ function response() {
     let keys = Object.keys(chain);
     let word = keys[keys.length * Math.random() << 0];
     let message = capitalize(word);
-    let wordCount = 4 + (6 * Math.random() << 0);
-    for (let i = 0; i < wordCount; i++) {
+    let maxLength = 30;
+    for (let i = 0; i < maxLength; i++) {
         word = chain[word][chain[word].length * Math.random() << 0];
+        if (word == END) {
+            break;
+        }
         message += " " + word;
     }
     return message;
