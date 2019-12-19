@@ -11,21 +11,25 @@ console.log('Loaded ' + titles.length + ' titles.');
 
 let words = [];
 for (let title of titles) {
-    words += title.split(" ");
+    words = words.concat(title.split(" "));
 }
 console.log('Found ' + words.length + ' words.');
-    /*
-            words = f.read().replace("\"", "").split()
-        index = 1
-        self.chain = {}
-        for word in words[index:]:
-            key = words[index - 1]
-            if key in self.chain:
-                self.chain[key].append(word)
-            else:
-                self.chain[key] = [word]
-            index += 1
 
+// Build chain
+let index = 1;
+let chain = {};
+for (let word of words.slice(index)) {
+    key = words[index - 1];
+    if (key in chain) {
+        chain[key].push(word)
+    } else {
+        chain[key] = [word];
+    }
+    index += 1;
+}
+console.log(chain);
+
+    /*
     def response(self, query, message):
         word = random.choice(list(self.chain.keys()))
         message = word.capitalize()
