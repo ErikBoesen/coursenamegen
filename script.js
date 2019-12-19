@@ -43,4 +43,15 @@ function response() {
     }
     return message;
 }
-console.log(response());
+
+let elements = {
+    output: document.getElementById('output'),
+    generate: document.getElementById('generate'),
+}
+
+function setOutput() {
+    // InnerHTML used intentionally here, because italics are sometimes used.
+    output.innerHTML = response();
+}
+setOutput();
+generate.onclick = setOutput;
