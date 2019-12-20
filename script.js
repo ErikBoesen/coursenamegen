@@ -31,6 +31,20 @@ for (let word of words.slice(index)) {
     index += 1;
 }
 
+function removeDuplicates(names) {
+    let unique = {};
+    names.forEach(function(i) {
+        if (!unique[i]) {
+            unique[i] = true;
+        }
+    });
+    return Object.keys(unique);
+}
+
+for (let key of Object.keys(chain)) {
+    chain[key] = removeDuplicates(chain[key]);
+}
+
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
